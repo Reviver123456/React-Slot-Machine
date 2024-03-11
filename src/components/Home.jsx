@@ -59,7 +59,8 @@ function Home() {
                 ))}
                 <div className="gradient-fade"></div>
             </div>
-            <button aria-label='Play again.' onClick={handleClick} style={{ color: "white" }}>play</button>
+            {winner !== null && <button aria-label='Play again.' onClick={handleClick} >play</button>}
+
         </div>
     );
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 
-function Spinner({ onFinish, timer }) {
+function Spinner(onFinish, timer) {
     const [position, setPosition] = useState(0);
     const [timeRemaining, setTimeRemaining] = useState(timer);
     const lastPosition = useRef(null);
@@ -38,7 +38,7 @@ function Spinner({ onFinish, timer }) {
 
     function tick() {
         if (timeRemaining <= 0) {
-            clearInterval(timerInterval);
+            clearInterval(timer);
             getSymbolFromPosition();
         } else {
             moveBackground();
