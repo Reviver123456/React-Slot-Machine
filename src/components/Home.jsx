@@ -47,6 +47,8 @@ function Home() {
 
     const childRefs = [useRef(), useRef(), useRef()];
 
+    console.log("childRefs", childRefs);
+
     console.log("winner", winner);
     return (
         <div>

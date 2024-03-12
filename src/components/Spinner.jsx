@@ -1,15 +1,37 @@
 import { useState, useEffect, useRef } from 'react'
 
-function Spinner({ onFinish, timer }) {
-    console.log("timer", timer);
+function Spinner(props) {
+    console.log("propsTimer", props.timer);
     const [position, setPosition] = useState(0);
-    const [timeRemaining, setTimeRemaining] = useState(timer);
+    const [timeRemaining, setTimeRemaining] = useState(props.timer);
     const lastPosition = useRef(null);
+    const currentTime = 0;
 
     const iconHeight = 188;
     const multiplier = Math.floor(Math.random() * (4 - 1) + 1);
     const start = setStartPosition();
     const speed = iconHeight * multiplier;
+
+    function forceUpdateHandler() {
+        reset();
+    }
+
+    function reset() {
+        if (currentTime) {
+            clearInterval(currentTime);
+        }
+
+        this.start = this.setStartPosition();
+
+        this.setState({
+            position: this.start,
+            timeRemaining: this.props.timer
+        });
+
+        this.timer = setInterval(() => {
+            this.tick()
+        }, 100);
+    }
 
     function setStartPosition() {
         return (Math.floor(Math.random() * 9) * iconHeight) * -1;
@@ -24,7 +46,7 @@ function Spinner({ onFinish, timer }) {
         const totalSymbols = 9;
         const maxPosition = (iconHeight * (totalSymbols - 1) * -1);
         let currentPosition = start;
-        let moved = (timer / 100) * multiplier;
+        let moved = (props.timer / 100) * multiplier;
 
         for (let i = 0; i < moved; i++) {
             currentPosition -= iconHeight;
@@ -34,12 +56,12 @@ function Spinner({ onFinish, timer }) {
             }
         }
 
-        onFinish(currentPosition);
+        props.onFinish(currentPosition);
     }
 
     function tick() {
         if (timeRemaining <= 0) {
-            clearInterval(timer);
+            clearInterval(props.timer);
             getSymbolFromPosition();
         } else {
             moveBackground();
@@ -58,8 +80,8 @@ function Spinner({ onFinish, timer }) {
 
     useEffect(() => {
         setPosition(start);
-        setTimeRemaining(timer);
-    }, [timer]);
+        setTimeRemaining(props.timer);
+    }, [props.timer]);
 
     return (
         <div style={{ backgroundPosition: '0px ' + position + 'px' }} className={`icons`} />
