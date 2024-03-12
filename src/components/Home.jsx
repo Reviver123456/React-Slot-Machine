@@ -47,6 +47,7 @@ function Home() {
 
     const childRefs = [useRef(), useRef(), useRef()];
 
+    console.log("winner", winner);
     return (
         <div>
             <h1 style={{ color: 'white' }}>
@@ -59,7 +60,7 @@ function Home() {
                 ))}
                 <div className="gradient-fade"></div>
             </div>
-            {winner !== null && <button aria-label='Play again.' onClick={handleClick} >play</button>}
+            {<button aria-label='Play again.' onClick={handleClick} >play</button>}
 
         </div>
     );
