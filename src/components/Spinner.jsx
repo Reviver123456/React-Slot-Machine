@@ -5,7 +5,7 @@ function Spinner(props) {
     const [position, setPosition] = useState(0);
     const [timeRemaining, setTimeRemaining] = useState(props.timer);
     const lastPosition = useRef(null);
-    const currentTime = 0;
+
 
     const iconHeight = 188;
     const multiplier = Math.floor(Math.random() * (4 - 1) + 1);
@@ -17,19 +17,18 @@ function Spinner(props) {
     }
 
     function reset() {
+
         if (currentTime) {
             clearInterval(currentTime);
         }
 
-        this.start = this.setStartPosition();
+        const start = setStartPosition();
 
-        this.setState({
-            position: this.start,
-            timeRemaining: this.props.timer
-        });
+        setPosition(start);
+        setTimeRemaining(props.timer);
 
-        this.timer = setInterval(() => {
-            this.tick()
+        const currentTime = setInterval(() => {
+            tick()
         }, 100);
     }
 
