@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-import Spinner from '../components/Spinner.jsx'
 import '../css/style.css'
 const loserOptions = [
     'lost!',
@@ -10,8 +9,8 @@ function Home() {
     // const [timeRemaining, setTimeRemaining] = useState(1000, 1400, 2200);
 
     const iconHeight = 188;
-    const multiplier = Math.floor(Math.random() * (4 - 1) + 1);
-    const speed = iconHeight * multiplier;
+    // const multiplier = Math.floor(Math.random() * (4 - 1) + 1);
+    // const speed = iconHeight * multiplier;
 
     const start = (Math.floor(Math.random() * 9) * iconHeight) * -1;
 
@@ -29,47 +28,30 @@ function Home() {
     };
 
     const finishHandler = () => {
-        // if (position.length === 3) {
-        //     const first = position[0];
-        //     const results = position.every(match => match === first);
-        //     console.log("results", results);
-        //     setWinner(results);
-        // }
-
-        const firstSymbol = position[0];
-        if (position.every(match => match === firstSymbol)) {
-            const symbolScore = getSymbolScore(firstSymbol);
-            if (symbolScore > 0) {
-                setScore(score + symbolScore);
+        if (position.length === 3) {
+            const one = position[0];
+            const two = position[1];
+            const three = position[2];
+            if (position.every(match => match === one)) {
+                setScore(score + 5);
                 setWinner(true);
-                return;
             }
-        }
-        setWinner(false);
-    };
-
-    const getSymbolScore = (position) => {
-        switch (position) {
-            case position[0]:
-                return "position", position[0];
-            case position[1]:
-                return 10;
-            case position[2]:
-                return 20;
-            case position[3]:
-                return 2;
-            case position[4]:
-                return 3;
-            case position[5]:
-                return 4;
-            case position[6]:
-                return 5;
-            case position[7]:
-                return 11;
-            case position[8]:
-                return 25;
-            default:
-                return 0;
+            if (position.every(match => match === two)) {
+                setScore(score + 5);
+                setWinner(true);
+            }
+            if (position.every(match => match === three)) {
+                setScore(score + 5);
+                setWinner(true);
+            }
+            if (position[0] === position[1]) {
+                setScore(score + 1);
+                setWinner(false);
+            }
+            if (position[0] === position[2]) {
+                setScore(score + 1);
+                setWinner(false);
+            }
         }
     };
 
