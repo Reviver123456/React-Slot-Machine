@@ -31,7 +31,6 @@ h1 {
 
 h1 span {
   color: aliceblue;
-  border: 1px solid hsla(208, 100%, 97.1%, .1);
   display: inline-block;
   padding: 0.75rem 1rem;
 }
