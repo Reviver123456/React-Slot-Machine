@@ -43,3 +43,11 @@
 .read-the-docs {
     color: #888;
 }
+button.bt-spin {
+    width: 150px;
+    font-size: 25px;
+    border-radius: 15px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #00ffa9;
+}
