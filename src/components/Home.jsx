@@ -64,8 +64,6 @@ function Home() {
     console.log("score", score);
 
 
-
-
     // function reset() {
 
     //     if (currentTime) {
