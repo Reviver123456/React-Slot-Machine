@@ -150,8 +150,8 @@ function Home() {
             </h1>
             <div className={`spinner-container`}>
                 <div style={{ backgroundPosition: '0px ' + position[0] + 'px' }} className={`icons`} />
-                {/* <div style={{ backgroundPosition: '0px ' + position[1] + 'px' }} className={`icons`} />
-                <div style={{ backgroundPosition: '0px ' + position[2] + 'px' }} className={`icons`} /> */}
+                <div style={{ backgroundPosition: '0px ' + position[1] + 'px' }} className={`icons`} />
+                <div style={{ backgroundPosition: '0px ' + position[2] + 'px' }} className={`icons`} />
             </div>
             <button aria-label='Play again.' onClick={handleClick}>spin</button>
             <div className='money-t'>คะแนน: {score}</div>
