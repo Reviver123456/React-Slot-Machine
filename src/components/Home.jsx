@@ -44,11 +44,24 @@ function Home() {
         setPoints(prevPoints => prevPoints + 1); // เพิ่มจำนวนแต้มที่ผู้เล่นมี
     };
 
+    useEffect(() => {
+        if (points === 0) {
+            setSpinning(false); // หยุดการหมุนเมื่อแต้มเป็น 0
+        }
+    }, [points]);
+    
     const handleClick = () => {
-        if (points > 0 && !spinning) { // ตรวจสอบว่ามีแต้มเพียงพอที่จะหมุนล้อหรือไม่ และกล่องไม่ได้หมุนอยู่แล้ว
+        if (spinning) {
+            setSpinning(false); // หยุดการหมุน
+        } else if (points > 0 && !spinning) {
+            setSpinning(true); // เริ่มการหมุน
+        } else if (points === 0) {
+            setPoints(10); // กำหนดแต้มเป็นค่าเริ่มต้น
             setSpinning(true); // เริ่มการหมุน
         }
     };
+    
+
 
     const spinAutomatically = () => {
         return setInterval(() => {
@@ -78,7 +91,9 @@ function Home() {
                     <div key={index} style={{ backgroundPosition: '0px ' + pos + 'px' }} className={`icons ${winner && spinning ? 'flashing' : ''}`} />
                 ))}
             </div>
-            <button aria-label='Play again.' onClick={handleClick} className='bt-spin' disabled={points <= 0 || spinning}>spin</button>
+            <button aria-label={spinning ? 'Stop' : 'Play'} onClick={handleClick} className='bt-spin' disabled={points === 0 && !spinning}>
+                {points === 0 ? 'เริ่ม' : spinning ? 'หยุด' : 'หมุน'}
+            </button>
         </div>
     );
 }
