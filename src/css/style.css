@@ -51,3 +51,16 @@ button.bt-spin {
     color: #fff;
     background-color: #00ffa9;
 }
+
+.flashing {
+    animation: flash 0.5s infinite alternate;
+}
+
+@keyframes flash {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
