@@ -40,12 +40,6 @@ function Home() {
         }
     }, [position]);
 
-    useEffect(() => {
-        if (points === 0) {
-            setSpinning(false); // หยุดการหมุนเมื่อแต้มหมด
-        }
-    }, [points]);
-
     const handleWin = () => {
         setPoints(prevPoints => prevPoints + 1); // เพิ่มจำนวนแต้มที่ผู้เล่นมี
     };
